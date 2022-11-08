@@ -5,42 +5,40 @@ DROP TABLE IF EXISTS books;
 
 CREATE TABLE authors (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    first_name VARCHAR NOT NULL,
-    last_name VARCHAR NOT NULL
+    name VARCHAR NOT NULL,
+    dob DATE NOT NULL,
+    pob VARCHAR NOT NULL
 );
 
 CREATE TABLE books (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title VARCHAR NOT NULL,
-    author_first_name VARCHAR NOT NULL,
-    author_last_name VARCHAR NOT NULL,
-    year_published SMALLINT NOT NULL
+    released SMALLINT NOT NULL
 );
 
 INSERT INTO authors (
-    first_name, 
-    last_name
+    name,
+    dob,
+    pob
 )
 VALUES
-    ('Shonda','Rhimes'),
-    ('Ryan','Holiday'),
-    ('Michelle','Obama'),
-    ('James','Clear'),
-    ('Marcus','Aurelius')
+    ('Shonda Rhimes', '1970-01-13', 'Chicago, IL'),
+    ('Ryan Holiday', '1987-06-16', 'Sacramento, CA' ),
+    ('Michelle Obama', '1964-01-17', 'Chicago, IL'),
+    ('James Clear', '1986-01-22', 'Hamilton, OH'),
+    ('Marcus Aurelius', '0121-04-26', 'Rome, Italy')
 ;
 
 INSERT INTO books (
     title,
-    author_first_name,
-    author_last_name,
-    year_published
+    released
 )
 VALUES
-    ('Year of Yes', 'Shonda', 'Rhimes', 2015),
-    ('Discipline is Destiny', 'Ryan', 'Holiday', 2022),
-    ('Courage is Calling', 'Ryan', 'Holiday', 2021),
-    ('Becoming', 'Michelle', 'Obama', 2018),
-    ('Atomic Habits', 'James', 'Clear', 2018),
-    ('Meditations', 'Marcus', 'Aurelius', 1558)
+    ('Year of Yes', 2015),
+    ('Discipline is Destiny', 2022),
+    ('Courage is Calling', 2021),
+    ('Becoming', 2018),
+    ('Atomic Habits', 2018),
+    ('Meditations', 1558)
 ;
     
