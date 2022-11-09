@@ -2,6 +2,7 @@
 -- The SQL in this file will be executed when you run `npm run setup-db`
 DROP TABLE IF EXISTS authors;
 DROP TABLE IF EXISTS books;
+DROP TABLE IF EXISTS authors_books;
 
 CREATE TABLE authors (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -14,6 +15,15 @@ CREATE TABLE books (
     id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     title VARCHAR NOT NULL,
     released SMALLINT NOT NULL
+);
+
+CREATE TABLE authors_books (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    author_id BIGINT NOT NULL,
+    book_id BIGINT NOT NULL,
+    title VARCHAR NOT NULL,
+    FOREIGN KEY (author_id) REFERENCES authors(id),
+    FOREIGN KEY (book_id) REFERENCES books(id)
 );
 
 INSERT INTO authors (
@@ -40,5 +50,19 @@ VALUES
     ('Becoming', 2018),
     ('Atomic Habits', 2018),
     ('Meditations', 1558)
+;
+
+INSERT INTO authors_books (
+    author_id,
+    book_id,
+    title
+)
+VALUES
+    (1, 1, 'Year of Yes'),
+    (2, 2, 'Discipline is Destiny'),
+    (2, 3, 'Courage is Calling'),
+    (3, 4, 'Becoming'),
+    (4, 5, 'Atomic Habits'),
+    (5, 6, 'Meditations')
 ;
     
