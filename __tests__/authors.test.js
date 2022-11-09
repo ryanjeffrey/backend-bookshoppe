@@ -13,6 +13,13 @@ describe('authors routes', () => {
     expect(res.body.length).toEqual(5);
   });
 
+  it('/authors/:id should return author detail', async () => {
+    const res = await request(app).get('/authors');
+    const michelle = res.body.find((author) => author.id === '3');
+    expect(michelle).toHaveProperty('id', '3');
+    expect(michelle).toHaveProperty('name', 'Michelle Obama');
+  });
+
   afterAll(() => {
     pool.end();
   });
