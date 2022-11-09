@@ -13,6 +13,13 @@ describe('books routes', () => {
     expect(res.body.length).toEqual(6);
   });
 
+  it('/books/:id should return book detail', async () => {
+    const res = await request(app).get('/books');
+    const meditations = res.body.find((book) => book.id === '6');
+    expect(meditations).toHaveProperty('id', '6');
+    expect(meditations).toHaveProperty('title', 'Meditations');
+  });
+
   afterAll(() => {
     pool.end();
   });
